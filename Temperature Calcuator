@@ -1,0 +1,79 @@
+-- HTML CODE --
+
+<!DOCTYPE html>
+
+<title> Temperature Calculator </title>
+<html>
+
+<body>
+    <link rel="stylesheet" href="StyleSheet.css" />
+
+    
+    <h2>Temperature Converter</h2>
+    <p>Type a value in the Fahrenheit field to convert the value to Celsius:</p>
+
+    <p>
+        <label> Fahrenheit </label>
+        <input id="inputFahrenheit" type="number" placeholder="Fahrenheit" oninput="temperatureConverter(this.value)" onchange="temperatureConverter(this.value)">
+    </p>
+    <p1>Celcius: <span id="outputCelcius"></span></p1>
+
+    <script>
+        function temperatureConverter(valNum) {
+            valNum = parseFloat(valNum);
+            document.getElementById("outputCelcius").innerHTML = (valNum - 32) / 1.8;
+        }
+    </script>
+
+    <footer>
+        <a href="https://www.instagram.com/shaiifns/">Instagram : @ShaiiFNS</a>     <a href="https://twitter.com/ShaiiFNS">twitter :  @ShaiiFNS</a>
+
+        
+    </footer>
+</body>
+</html>
+
+
+
+-- CSS CODE -- 
+
+body {
+
+    margin: auto;
+    background-color: #FFE77AFF;
+}
+
+input {
+    background-color: #FFE77AFF;
+    text-decoration-color: #000000;
+}
+
+/**/
+input:hover {
+    background-color: white;
+}
+
+ /* Header */
+h2 {
+    border-style: solid;
+    text-align: center;
+    font-family: "Lucida Console", "Courier New", monospace;
+    height: 80px;
+    margin-top: auto;
+    background-color: #4CAF50;
+    width: auto;
+}
+
+/*footer*/
+footer {
+    background-color: #4CAF50;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 40px;
+    padding: 10px 10px 0px;
+}
+
+a:hover {
+    background-color: white;
+}
