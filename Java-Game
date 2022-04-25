@@ -1,0 +1,126 @@
+-- HTML --
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> i dont even know anymore </title>
+    <link rel="stylesheet" href="StyleSheet.css">
+</head>
+<body>
+    <div class="game">
+        <div id="man"></div> 
+        <div id="obstacle"></div>
+    </div>
+    <script src="JavaScript.js"></script>
+</body>
+</html>
+
+
+-- CSS --
+
+body {
+    background-color: #FFE77AFF;
+}
+
+
+* {
+
+
+    padding: 0;
+    margin: 0;
+}
+
+.game {
+    width: 600px;
+    height: 200px;
+    border: 1px solid #000000;
+    margin: auto;
+}
+
+#man {
+    width: 70px;
+    height: 70px;
+    background-image: url('pngwing.com (1).png');
+    background-size: auto 70px;
+    position: relative;
+    top: 143px;
+}
+
+.jump {
+    animation: jump 0.3s linear; /* Animation Delay */
+}
+
+@keyframes jump {
+    0% {
+        top: 143px; /*distance from the top of the parent element*/
+    }
+
+    30% {
+        top: 115px;
+    }
+
+    50% {
+        top: 70px;
+    }
+
+    80% {
+        top: 115px;
+    }
+
+    100% {
+        top: 143px;
+    }
+}
+
+#obstacle {
+    left: 580px; /*- width of obstacle*/
+    background-image: url(pngwing.com.png);
+    background-size: 20px 40px;
+    animation: obstacle-block 1.2s infinite linear;
+    width: 20px;
+    height: 40px;
+    position: relative;
+    top: 91px;
+}
+
+@keyframes obstacle-block {
+    0% {
+        left: 600px;
+    }
+
+    100% {
+        left: -20px;
+    }
+}
+
+
+-- Java.js --
+
+const man=document.getElementById("man");
+const obstacle=document.getElementById("obstacle")
+function jump() {
+    if (dispatchEvent.classList != "jump") //first it checks if the Character is mid-jump. If not, it makes it jump.  
+    {
+        man.classList.add("jump");
+        setTimeout(function () {
+            man.classList.remove("jump"); //removes the jump class from the Character once it has jumped so that it can jump again  
+        }, 300)
+    }
+}
+let checkAlive = setInterval(function () {
+    let manTop = parseInt(window.getComputedStyle(man).getPropertyValue("top"));
+    let obstacleLeft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
+    //check for collision  
+    if (obstacleLeft>0 && obstacleLeft<70 && manTop>=143) {
+        man.style.animationPlayState = 'paused';
+        obstacle.style.animationPlayState = 'paused';
+        alert("Whoops! Game Over :(");
+        window.location.reload();
+    }
+}, 10);
+document.addEventListener("keydown", function (event) {
+    jump();
+})
